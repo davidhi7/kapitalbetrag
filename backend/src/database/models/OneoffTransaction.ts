@@ -19,7 +19,11 @@ export default class OneoffTransaction extends Model {
     @Column(DataType.DATEONLY)
     declare date: Date;
 
-    // associations
+    @ForeignKey(() => User)
+    @AllowNull(false)
+    @Column
+    declare UserId: number;
+
     @BelongsTo(() => Transaction)
     declare Transaction: ReturnType<() => Transaction>;
 
@@ -29,8 +33,4 @@ export default class OneoffTransaction extends Model {
 
     @BelongsTo(() => User)
     declare User: ReturnType<() => User>;
-
-    @ForeignKey(() => User)
-    @Column
-    declare UserId: number;
 }

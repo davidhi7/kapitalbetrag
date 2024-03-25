@@ -10,13 +10,15 @@ export default class Shop extends Model {
     @Column
     declare name: string;
 
+    @ForeignKey(() => User)
+    @AllowNull(false)
+    @Column
+    declare UserId: number;
+    
     @HasMany(() => Transaction)
     declare Transactions: Transaction[];
 
     @BelongsTo(() => User)
     declare User: ReturnType<() => User>;
 
-    @ForeignKey(() => User)
-    @Column
-    declare UserId: number;
 }

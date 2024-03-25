@@ -19,7 +19,6 @@ export default class Transaction extends Model {
     get amount(): number {
         return Number(this.getDataValue('amount'));
     }
-    // declare amount: number;
 
     @AllowNull(true)
     @Column(DataType.TEXT)
@@ -27,6 +26,7 @@ export default class Transaction extends Model {
 
     // associations
     @ForeignKey(() => Category)
+    @AllowNull(false)
     @Column
     declare CategoryId: number;
 
@@ -34,6 +34,7 @@ export default class Transaction extends Model {
     declare Category: ReturnType<() => Category>;
 
     @ForeignKey(() => Shop)
+    @AllowNull(false)
     @Column
     declare ShopId: number;
 

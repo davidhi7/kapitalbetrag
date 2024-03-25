@@ -22,7 +22,12 @@ export default class MonthlyTransaction extends Model {
     @AllowNull(true)
     @Column(DataType.DATEONLY)
     declare monthTo: Date;
-
+    
+    @ForeignKey(() => User)
+    @AllowNull(false)
+    @Column
+    declare UserId: number;
+    
     // associations
     @BelongsTo(() => Transaction)
     declare Transaction: ReturnType<() => Transaction>;
@@ -34,7 +39,4 @@ export default class MonthlyTransaction extends Model {
     @BelongsTo(() => User)
     declare User: ReturnType<() => User>;
 
-    @ForeignKey(() => User)
-    @Column
-    declare UserId: number;
 }
